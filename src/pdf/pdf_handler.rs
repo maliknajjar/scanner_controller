@@ -42,6 +42,22 @@ pub fn generate_pdf_from_images(images: Vec<scanner_handler::Image>) -> Vec<u8> 
         imageStream.color_space().device_rgb();
         imageStream.bits_per_component(8);
         imageStream.finish();
+
+        // Size the image at 1pt per pixel.
+        let w = image.width as f32;
+        let h = image.height as f32;
+    
+        // Center the image on the page.
+        let x = (a4.x2 - w) / 2.0;
+        let y = (a4.y2 - h) / 2.0;
+    
+        // Place and size the image in a content stream.
+        let mut content = Content::new();
+        content.save_state();
+        content.transform([w, 0.0, 0.0, h, x, y]);
+        content.x_object(image_name);
+        content.restore_state();
+        writer.stream(content_id, &content.finish());
     }
 
     // Set up the page tree. For more details see `hello.rs`.
