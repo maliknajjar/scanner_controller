@@ -5,21 +5,12 @@ use scanner::scanner_handler::{self, Image};
 use pdf::pdf_handler;
 
 fn main() {
-    // let image: scanner_handler::Image = scanner_handler::scan_image();
-
     // Read the contents of the PPM file into a byte buffer
-    let images: Vec<scanner_handler::Image> = vec![
-        Image {
-            data: vec![
-                255,   0,    0,
-                  0, 255,    0,
-                  0,   0,  255,
-                255,   0,    0,
-            ],
-            height: 2,
-            width: 2
-        },
-    ];
+    let mut images: Vec<scanner_handler::Image> = Vec::new();
+    images.push(scanner_handler::scan_image());
+    images.push(scanner_handler::scan_image());
 
-    let pdf = pdf_handler::generate_pdf_from_images(images);
+    let pdf_data = pdf_handler::generate_pdf_from_images(images);
+    // Write the thing to a file.
+    std::fs::write("documents/document.pdf", pdf_data).expect("Failed generating a pdf file");
 }
