@@ -4,6 +4,7 @@ pub struct Image {
     pub data: Vec<u8>,
     pub width: i32,
     pub height: i32,
+    pub hash: Option<String>
 }
 
 pub fn scan_image() -> Image {
@@ -27,7 +28,7 @@ pub fn scan_image() -> Image {
     let height = params.lines as i32;
     let image_data = handle.read_to_vec().expect("Failed to read images raw bytes");
     
-    let image = Image { data: image_data, width: width, height: height};
+    let image = Image { data: image_data, width: width, height: height, hash: None};
 
     return image;
 }
