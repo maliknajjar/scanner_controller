@@ -1,6 +1,12 @@
-use sane_scan::{Sane};
+use sane_scan::Sane;
 
-pub fn scan_image() -> (Vec<u8>, i32, i32) {
+pub struct Image {
+    pub data: Vec<u8>,
+    pub width: i32,
+    pub height: i32,
+}
+
+pub fn scan_image() -> Image {
     let sane = Sane::init_1_0().expect("Failed to initialize SANE");
     let mut devices = sane.get_devices().expect("Failed to enumerate devices");
     let device = devices.first_mut().expect("No scanner found");
@@ -20,5 +26,8 @@ pub fn scan_image() -> (Vec<u8>, i32, i32) {
     let width = params.pixels_per_line as i32;
     let height = params.lines as i32;
     let image_data = handle.read_to_vec().expect("Failed to read images raw bytes");
-    return (image_data, width, height);
+    
+    let image = Image { data: image_data, width: width, height: height};
+
+    return image;
 }

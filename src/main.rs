@@ -1,22 +1,25 @@
 mod scanner;
 mod pdf;
 
+use scanner::scanner_handler::{self, Image};
+use pdf::pdf_handler;
+
 fn main() {
-    let (image_data, width, height) = scanner::scanner_orders::scan_image();
+    // let image: scanner_handler::Image = scanner_handler::scan_image();
 
     // Read the contents of the PPM file into a byte buffer
-    let image_data: Vec<u8> = vec![
-        255,   0,    0,
-          0, 255,    0,
-          0,   0,  255,
-        255,   0,    0,
+    let images: Vec<scanner_handler::Image> = vec![
+        Image {
+            data: vec![
+                255,   0,    0,
+                  0, 255,    0,
+                  0,   0,  255,
+                255,   0,    0,
+            ],
+            height: 2,
+            width: 2
+        },
     ];
-    let height: i32 = 2;
-    let width: i32 = 2;
 
-    let images: Vec<(Vec<u8>, i32, i32)> = vec![
-        (image_data, width, height),
-    ];
-
-    let pdf = pdf::pdf::generate_pdf_from_images(images);
+    let pdf = pdf_handler::generate_pdf_from_images(images);
 }
