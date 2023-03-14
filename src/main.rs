@@ -26,6 +26,6 @@ fn main() {
     let pdf_data = pdf_handler::generate_pdf_from_images(images);
 
     // Write the thing to a file.
-    std::fs::write("documents/documents.pdf", pdf_data).expect("Failed generating a pdf file");
+    std::fs::write("documents/documents.pdf", pdf_data).expect("Failed writing the pdf file");
 }
  
