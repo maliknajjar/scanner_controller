@@ -36,12 +36,12 @@ pub fn generate_pdf_from_images(images: Vec<scanner_handler::Image>) -> Vec<u8> 
         page.finish();
     
         // Write the stream for the image we want to embed.
-        let mut imageStream = writer.image_xobject(image_id, &image.data);
-        imageStream.width(image.width);
-        imageStream.height(image.height);
-        imageStream.color_space().device_rgb();
-        imageStream.bits_per_component(8);
-        imageStream.finish();
+        let mut image_stream = writer.image_xobject(image_id, &image.data);
+        image_stream.width(image.width);
+        image_stream.height(image.height);
+        image_stream.color_space().device_rgb();
+        image_stream.bits_per_component(8);
+        image_stream.finish();
 
         // Size the image at 1pt per pixel.
         let w = image.width as f32;

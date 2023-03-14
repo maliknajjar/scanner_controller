@@ -19,7 +19,7 @@ pub fn scan_image() -> Image {
     //     println!("{:?}", option);
     // }
 
-    let params = handle.get_parameters().expect("Failed to get parameters");
+    let _params = handle.get_parameters().expect("Failed to get parameters");
     let params = handle.start_scan().expect("Failed to start scan");
 
     let width = params.pixels_per_line as i32;

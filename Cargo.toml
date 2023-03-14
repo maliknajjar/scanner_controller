@@ -7,8 +7,10 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+actix-web = "4.3.1"
 image = "0.24.5"
 pdf-writer = "0.6.0"
-rocket = "0.4.11"
+rocket = "0.5.0-rc.2"
 sane-scan = "0.1.2"
+serde_json = "1.0.94"
 sha2 = "0.10.6"
