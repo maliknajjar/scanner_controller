@@ -14,7 +14,7 @@ fn main() {
     // images.push(scanner_handler::scan_image());
     // images.push(scanner_handler::scan_image());
     
-    // // two simple pixels
+    // two simple pixels
     println!("starting..");
     images.push(scanner_handler::Image { data: vec![ 255, 0, 0, 0, 255, 0, 0, 0, 255, 255, 0, 0 ], height: 2, width: 2, hash: None });
     images.push(scanner_handler::Image { data: vec![ 0, 255, 0, 255, 0, 0, 0, 0, 255, 0, 255, 0 ], height: 2, width: 2, hash: None });
